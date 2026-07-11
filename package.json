@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node api/index.js",
-    "build": "cd client && npm install && npm run build",
+    "build": "cd client && npm install --include=dev && npm run build",
     "start": "node api/index.js",
     "seed": "node -e \"require('./src/db').applySchemaAndSeeds().then(() => { console.log('Pronto!'); process.exit(0); }).catch(e => { console.error(e); process.exit(1); })\""
   },
