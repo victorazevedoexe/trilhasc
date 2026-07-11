@@ -5,6 +5,7 @@ const { createRouteHandler } = require('uploadthing/server');
 const { fileRouter } = require('./uploadthing');
 
 const app = express();
+app.set('trust proxy', 1); // Necessário para a Vercel e o express-rate-limit
 
 const allowedOrigins = [
   'http://localhost:5173',

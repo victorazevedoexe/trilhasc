@@ -9,8 +9,12 @@ let _db;
 
 function getDb() {
   if (!_db) {
+    const url = process.env.TURSO_DATABASE_URL || 'file:local.db';
+    if (process.env.NODE_ENV === 'production' && url === 'file:local.db') {
+      console.error('FATAL: TURSO_DATABASE_URL is missing in environment variables.');
+    }
     _db = createClient({
-      url: process.env.TURSO_DATABASE_URL || 'file:local.db',
+      url,
       authToken: process.env.TURSO_AUTH_TOKEN,
     });
   }
