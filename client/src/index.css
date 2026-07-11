@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #071E1C;
+    color: #F0FDFA;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+
+  body { margin: 0; min-height: 100vh; }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  :focus-visible {
+    outline: 2px solid #0EA5E9;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #0D3B38; }
+  ::-webkit-scrollbar-thumb { background: #154F4A; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #0EA5E9; }
+}
+
+@layer components {
+  /* Botões */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cerulean-500 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-deep disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-cerulean-500 text-white hover:bg-cerulean-400 active:bg-cerulean-600 shadow-lg hover:shadow-glow-cerulean;
+  }
+  .btn-gold {
+    @apply btn bg-gold-400 text-bg-deep hover:bg-gold-300 active:bg-gold-500 shadow-lg hover:shadow-glow-gold font-bold;
+  }
+  .btn-outline {
+    @apply btn border border-cerulean-500/40 text-cerulean-400 hover:bg-cerulean-500/10 hover:border-cerulean-400;
+  }
+  .btn-ghost {
+    @apply btn text-text-muted hover:text-text-primary hover:bg-bg-elevated;
+  }
+  .btn-danger {
+    @apply btn bg-status-danger/20 text-status-danger border border-status-danger/30 hover:bg-status-danger/30;
+  }
+  .btn-sm { @apply !px-3 !py-1.5 !text-xs !rounded-lg; }
+  .btn-lg { @apply !px-6 !py-3.5 !text-base !rounded-xl2; }
+
+  /* Cards */
+  .card {
+    @apply bg-bg-surface rounded-xl2 border border-cerulean-500/10 shadow-card transition-all duration-200;
+  }
+  .card-hover { @apply card hover:border-cerulean-500/25 hover:shadow-card-hover hover:translate-y-[-1px]; }
+  .card-body { @apply p-5 md:p-6; }
+
+  /* Inputs */
+  .input {
+    @apply w-full bg-bg-deep border border-bg-elevated text-text-primary placeholder-text-subtle/50 rounded-xl px-4 py-3 text-sm transition-all duration-200
+    focus:outline-none focus:border-cerulean-500/60 focus:ring-2 focus:ring-cerulean-500/20;
+  }
+  .input-label { @apply block text-xs font-semibold text-text-muted uppercase tracking-wider mb-1.5; }
+  .input-error { @apply !border-status-danger/60 !ring-status-danger/20; }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold;
+  }
+  .badge-success { @apply badge bg-status-success/15 text-status-success border border-status-success/20; }
+  .badge-warning { @apply badge bg-status-warning/15 text-status-warning border border-status-warning/20; }
+  .badge-danger  { @apply badge bg-status-danger/15 text-status-danger border border-status-danger/20; }
+  .badge-info    { @apply badge bg-cerulean-500/15 text-cerulean-400 border border-cerulean-500/20; }
+  .badge-muted   { @apply badge bg-bg-elevated text-text-muted border border-bg-overlay/50; }
+
+  /* Progress bar */
+  .progress-track { @apply w-full h-2 bg-bg-elevated rounded-full overflow-hidden; }
+  .progress-fill  {
+    @apply h-full rounded-full transition-all duration-700 ease-out;
+    background: linear-gradient(90deg, #0EA5E9, #38D1FB);
+  }
+  .progress-fill-gold {
+    @apply h-full rounded-full transition-all duration-700 ease-out;
+    background: linear-gradient(90deg, #F59E0B, #FBBF24);
+  }
+
+  /* Sidebar nav link */
+  .nav-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-text-muted text-sm font-medium transition-all duration-150 hover:text-text-primary hover:bg-bg-elevated cursor-pointer;
+  }
+  .nav-link-active {
+    @apply nav-link text-cerulean-400 bg-cerulean-500/10 border-l-2 border-cerulean-500 pl-[14px];
+  }
+
+  /* Gold accent border (Onda Digital signature) */
+  .card-gold-accent { @apply border-l-4 border-l-gold-400; }
+  .card-cerulean-accent { @apply border-l-4 border-l-cerulean-500; }
+
+  /* Wave divider */
+  .wave-divider {
+    width: 100%;
+    height: 40px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 40'%3E%3Cpath d='M0,20 C200,35 400,5 600,20 C800,35 1000,5 1200,20 L1200,40 L0,40 Z' fill='%230D3B38'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  /* Section header */
+  .section-header {
+    @apply flex items-center gap-3 mb-6;
+  }
+  .section-title {
+    @apply text-xl font-bold text-text-primary font-display;
+  }
+  .section-icon {
+    @apply w-9 h-9 rounded-xl bg-cerulean-500/15 flex items-center justify-center text-cerulean-400 flex-shrink-0;
+  }
+
+  /* Empty state */
+  .empty-state {
+    @apply flex flex-col items-center justify-center gap-3 py-12 text-center;
+  }
+  .empty-icon {
+    @apply w-16 h-16 rounded-2xl bg-bg-elevated flex items-center justify-center text-text-subtle mb-2;
+  }
+
+  /* Alert */
+  .alert { @apply flex items-start gap-3 p-4 rounded-xl border text-sm; }
+  .alert-warning { @apply alert bg-status-warning/10 border-status-warning/30 text-status-warning; }
+  .alert-danger   { @apply alert bg-status-danger/10 border-status-danger/30 text-status-danger; }
+  .alert-info     { @apply alert bg-cerulean-500/10 border-cerulean-500/30 text-cerulean-300; }
+  .alert-success  { @apply alert bg-status-success/10 border-status-success/30 text-status-success; }
+
+  /* Skeleton loader */
+  .skeleton {
+    @apply bg-bg-elevated rounded-lg animate-pulse;
+  }
+}
+
+@layer utilities {
+  .text-gradient-cerulean {
+    background: linear-gradient(135deg, #38D1FB, #0EA5E9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #FCD34D, #F59E0B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .bg-ocean { background: linear-gradient(135deg, #071E1C 0%, #0D3B38 50%, #154F4A 100%); }
+  .font-display { font-family: 'Bricolage Grotesque', sans-serif; }
+}
