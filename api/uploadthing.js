@@ -1,18 +1,19 @@
 /**
- * Rota Serverless dedicada para o Uploadthing na Vercel.
- * Precisa ser uma função separada para não conflitar com o timeout
- * da função principal do Express.
+ * Rota Serverless dedicada para o Uploadthing na Vercel usando o adapter do Express.
+ * Precisa ser uma função separada para não conflitar com o timeout da função principal.
  */
 require('dotenv').config();
-const { createRouteHandler } = require('uploadthing/server');
+const express = require('express');
+const { createRouteHandler } = require('uploadthing/express');
 const { fileRouter } = require('../src/uploadthing');
 
-const handler = createRouteHandler({
+const app = express();
+
+app.use('/api/uploadthing', createRouteHandler({
   router: fileRouter,
   config: {
     token: process.env.UPLOADTHING_TOKEN,
-    logLevel: 'error',
   },
-});
+}));
 
-module.exports = handler;
+module.exports = app;
