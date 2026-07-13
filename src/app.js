@@ -1,8 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const { createRouteHandler } = require('uploadthing/server');
-const { fileRouter } = require('./uploadthing');
 
 const app = express();
 app.set('trust proxy', 1); // Necessário para a Vercel e o express-rate-limit
@@ -26,12 +24,6 @@ app.use(cors({
 
 app.use(express.json({ limit: '1mb' }));
 app.use(express.urlencoded({ extended: true }));
-
-// Uploadthing — upload direto de arquivos para CDN
-app.use('/api/uploadthing', createRouteHandler({
-  router: fileRouter,
-  config: { token: process.env.UPLOADTHING_TOKEN },
-}));
 
 // Rotas da API
 app.use('/api/auth', require('./routes/auth'));
